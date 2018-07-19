@@ -11,10 +11,11 @@ class SlotMachine
 
   def pull_lever
     reels = generate_reels
-    score(reels)
+    score = calculate_score(reels)
+    puts display(reels, score)
   end
 
-  def score(reels)
+  def calculate_score(reels)
     dup = reels.detect { |reel| reels.count(reel) > 1 }
     return 0 if dup.nil?
     dup_count = reels.count(dup)
@@ -32,5 +33,13 @@ class SlotMachine
 
   def multiplier(symbol, modifier = 1)
     SYMBOL_MULTIPLIER[symbol] * 5 * modifier
+  end
+
+  def display(reels, score)
+    string = '|'
+    reels.each do |reel|
+      string << "#{reel}|"
+    end
+    string << "\nScore: #{score}"
   end
 end

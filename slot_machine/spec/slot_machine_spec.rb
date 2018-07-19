@@ -2,13 +2,13 @@ require_relative '../lib/slot_machine'
 
 def test_scenario(reels, expected_score)
   it "returns #{expected_score} for #{reels[0]}/#{reels[1]}/#{reels[2]}" do
-    expect(slot_machine.score(reels)).to eq expected_score
+    expect(slot_machine.calculate_score(reels)).to eq expected_score
   end
 end
 
 describe SlotMachine do
-  let(:slot_machine) {SlotMachine.new}
-  describe '#score' do
+  let(:slot_machine) { SlotMachine.new }
+  describe '#calculate_score' do
     describe '- zero' do
       test_scenario(%w[joker star cherry], 0)
       test_scenario(%w[star star bell], 0)
@@ -49,11 +49,11 @@ describe SlotMachine do
   end
 
   describe '#generate_reels' do
-    it "generates different reels" do
-      reels_1 = slot_machine.send(:generate_reels)
-      reels_2 = slot_machine.send(:generate_reels)
+    it 'generates different reels' do
+      reels1 = slot_machine.send(:generate_reels)
+      reels2 = slot_machine.send(:generate_reels)
 
-      expect(reels_1).to_not eq reels_2
+      expect(reels1).to_not eq reels2
     end
   end
 end

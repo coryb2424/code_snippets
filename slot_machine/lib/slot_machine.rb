@@ -2,7 +2,7 @@
 class SlotMachine
   attr_reader :credits
 
-  PLAY_COST = 2
+  PLAY_COST = 5
   SYMBOLS = %w[joker star bell seven cherry].freeze
   SYMBOL_MULTIPLIER = {
     'joker'  => 5,
@@ -42,9 +42,9 @@ class SlotMachine
   def display(reels, score)
     string = '|'
     reels.each do |reel|
-      string << "#{reel}|"
+      string << " #{reel} |"
     end
-    string << "\nScore: #{score}"
+    string << "\nScore: #{score}\nCredits Remaining: #{@credits}"
   end
 
   def generate_reels

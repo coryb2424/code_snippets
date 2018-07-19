@@ -9,15 +9,13 @@ class SlotMachine
   }.freeze
 
   def score(reels)
-    return 0 unless (dup = reels.detect { |reel| reels.count(reel) > 1 })
+    dup = reels.detect { |reel| reels.count(reel) > 1 }
+    return 0 if dup.nil?
+
     dup_count = reels.count(dup)
-    if dup_count == 3
-      multiplier(dup, 2)
-    elsif reels.include? 'joker'
-      multiplier(dup)
-    else
-      0
-    end
+    return 0 if dup_count == 2 && !reels.include?('joker')
+
+    dup_count == 3 ? multiplier(dup, 2) : multiplier(dup)
   end
 
   def multiplier(symbol, modifier = 1)

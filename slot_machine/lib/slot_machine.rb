@@ -9,6 +9,11 @@ class SlotMachine
     'cherry' => 1
   }.freeze
 
+  def pull_lever
+    reels = generate_reels
+    score(reels)
+  end
+
   def score(reels)
     dup = reels.detect { |reel| reels.count(reel) > 1 }
     return 0 if dup.nil?
@@ -19,14 +24,13 @@ class SlotMachine
     dup_count == 3 ? multiplier(dup, 2) : multiplier(dup)
   end
 
-  def pull_lever
-    reels = Array.new(3) do
+  private
+
+  def generate_reels
+    Array.new(3) do
       SYMBOLS.sample
     end
-    score(reels)
   end
-
-  private
 
   def multiplier(symbol, modifier = 1)
     SYMBOL_MULTIPLIER[symbol] * 5 * modifier

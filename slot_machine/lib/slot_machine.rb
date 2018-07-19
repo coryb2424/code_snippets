@@ -1,5 +1,6 @@
 # Simplified SlotMachine with 3 identitcal or 2+joker rules.
 class SlotMachine
+  SYMBOLS = %w[joker star bell seven cherry].freeze
   SYMBOL_MULTIPLIER = {
     'joker' => 5,
     'star' => 4,
@@ -17,6 +18,15 @@ class SlotMachine
 
     dup_count == 3 ? multiplier(dup, 2) : multiplier(dup)
   end
+
+  def pull_lever
+    reels = Array.new(3) do
+      SYMBOLS.sample
+    end
+    score(reels)
+  end
+
+  private
 
   def multiplier(symbol, modifier = 1)
     SYMBOL_MULTIPLIER[symbol] * 5 * modifier

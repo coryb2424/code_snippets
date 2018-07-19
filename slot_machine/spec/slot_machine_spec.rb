@@ -9,7 +9,7 @@ end
 describe SlotMachine do
   let(:slot_machine) {SlotMachine.new}
   describe '#score' do
-    describe '#zero condition' do
+    describe '- zero' do
       test_scenario(%w[joker star cherry], 0)
       test_scenario(%w[star star bell], 0)
       test_scenario(%w[star star seven], 0)
@@ -25,26 +25,35 @@ describe SlotMachine do
       test_scenario(%w[cherry cherry seven], 0)
     end
 
-    describe '#one joker condition' do
+    describe '- one joker' do
       test_scenario(%w[star star joker], 20)
       test_scenario(%w[bell bell joker], 15)
       test_scenario(%w[seven seven joker], 10)
       test_scenario(%w[cherry cherry joker], 5)
     end
 
-    describe '#two jokers condition' do
+    describe '- two jokers' do
       test_scenario(%w[joker joker star], 25)
       test_scenario(%w[joker joker bell], 25)
       test_scenario(%w[joker joker seven], 25)
       test_scenario(%w[joker joker cherry], 25)
     end
 
-    describe '#three of the same condition' do
+    describe '- three of the same' do
       test_scenario(%w[joker joker joker], 50)
       test_scenario(%w[star star star], 40)
       test_scenario(%w[bell bell bell], 30)
       test_scenario(%w[seven seven seven], 20)
       test_scenario(%w[cherry cherry cherry], 10)
+    end
+  end
+
+  describe '#generate_reels' do
+    it "generates different reels" do
+      reels_1 = slot_machine.send(:generate_reels)
+      reels_2 = slot_machine.send(:generate_reels)
+
+      expect(reels_1).to_not eq reels_2
     end
   end
 end

@@ -12,15 +12,15 @@ class SlotMachine
     return 0 unless (dup = reels.detect { |reel| reels.count(reel) > 1 })
     dup_count = reels.count(dup)
     if dup_count == 3
-      SYMBOL_MULTIPLIER[dup] * 5 * 2
+      multiplier(dup, 2)
     elsif reels.include? 'joker'
-      SYMBOL_MULTIPLIER[dup] * 5
+      multiplier(dup)
     else
       0
     end
   end
 
-  def multiplier(symbol)
-
+  def multiplier(symbol, modifier = 1)
+    SYMBOL_MULTIPLIER[symbol] * 5 * modifier
   end
 end

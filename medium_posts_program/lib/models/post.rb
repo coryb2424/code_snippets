@@ -1,12 +1,14 @@
 class Post
-  attr_reader :text, :path, :author, :title, :read
-  def initialize(attributes)
-    @text = attributes[:text]
-    @path = attributes[:path]
-    @title = attributes[:title]
-    @author = attributes[:author]
+  attr_reader :text, :path, :title, :read
+  attr_accessor :author, :id
 
-    @read = attributes[:read] || false
+  def initialize(attr = {})
+    @id = attr[:id]
+    @text = attr[:text]
+    @path = attr[:path]
+    @title = attr[:title]
+    @author = attr[:author] || []
+    @read = attr[:read] || false
   end
 
   def read!

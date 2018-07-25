@@ -1,0 +1,3 @@
+class AuthorsView
+
+end

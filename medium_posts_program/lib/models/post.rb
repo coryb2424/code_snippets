@@ -7,7 +7,7 @@ class Post
     @text = attr[:text]
     @path = attr[:path]
     @title = attr[:title]
-    @author = attr[:author] || []
+    @author = attr[:author]
     @read = attr[:read] || false
   end
 

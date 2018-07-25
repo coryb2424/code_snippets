@@ -1,10 +1,10 @@
-require_relative 'post'
-require_relative 'view'
+require_relative '../models/post'
+require_relative '../views/posts_view'
 
 require 'nokogiri'
 require 'open-uri'
 
-class PostController
+class PostsController
   MEDIUM_BASE_URL = 'http://medium.com/'
   def initialize(repo)
     @repo = repo

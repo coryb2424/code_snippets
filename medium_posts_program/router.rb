@@ -1,4 +1,3 @@
-require_relative 'post_controller'
 class Router
   def initialize(controller)
     @controller = controller

@@ -1,6 +1,6 @@
 require 'csv'
 
-class PostRepository
+class PostsRepository
   def initialize(filepath)
     @filepath = filepath
     @posts = []

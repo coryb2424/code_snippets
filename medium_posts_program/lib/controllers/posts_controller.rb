@@ -37,6 +37,4 @@ class PostsController
     post.read!
     @repo.save_csv
   end
-
-
 end
